@@ -1,8 +1,10 @@
-# IntellijIdea files
- .idea
- *.iml
- *.iws
- *.xml
-  
-   
-  # Maven
+# Intellij
+.idea
+*.iml
+*.iws
+*.xml
+
+ 
+# Maven
+log/
+target/
