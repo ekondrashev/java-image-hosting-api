@@ -1,0 +1,8 @@
+# IntellijIdea files
+ .idea
+ *.iml
+ *.iws
+ *.xml
+  
+   
+  # Maven
