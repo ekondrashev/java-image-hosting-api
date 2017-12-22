@@ -28,9 +28,7 @@ public class Registration {
         {
             saveClientInDB(login, pass1);
         }
-
     }
-
 
     void saveClientInDB(String login, String password)
     {
