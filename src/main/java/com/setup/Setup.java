@@ -1,4 +1,4 @@
-package setup;
+package com.setup;
 
 import java.util.Arrays;
 import java.util.List;

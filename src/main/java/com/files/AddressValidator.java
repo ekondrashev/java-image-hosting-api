@@ -1,15 +1,14 @@
-package files;
+package com.files;
 
-import log.Logs;
-import objects.UrlValidator;
-import setup.Setup;
+import com.log.Logs;
+import com.setup.Setup;
 
 import java.net.URL;
 import java.util.logging.Logger;
 
-public class AddressValidation implements urlValidationInterface {
+public class AddressValidator {
 
-    public UrlValidator Validation(URL url) {
+    public UrlValidator validate(URL url) {
 
         Setup setup = new Setup();
 

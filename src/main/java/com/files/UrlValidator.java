@@ -1,4 +1,4 @@
-package objects;
+package com.files;
 
 import java.net.URL;
 

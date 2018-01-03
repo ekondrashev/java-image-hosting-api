@@ -1,12 +1,24 @@
-package files;
+package com.files;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class CheckForFileWholeColorModel {
+public class FileChecker {
 
-    public boolean testWhole(String filepath, BufferedImage image)
+    String filepath;
+
+    public FileChecker(String filepath) {
+        this.filepath = filepath;
+    }
+
+   public boolean checkForSave() {
+
+       return new File(filepath).exists();
+    }
+
+    public boolean checkForColorModel(BufferedImage image)
     {
         BufferedImage screen = null;
         try {
@@ -20,4 +32,5 @@ public class CheckForFileWholeColorModel {
         }
         else return false;
     }
+
 }
