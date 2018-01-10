@@ -1,41 +1,27 @@
 package com.image;
 
-import com.files.AddressValidator;
 import com.files.FileChecker;
-import com.files.UrlValidator;
 import com.log.Logs;
-import com.setup.Setup;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class AllImages implements ImageList {
+public class AllImages implements Images {
 
     private List<Image> imagesList = new ArrayList<>();
 
     @Override
     public void addImage(Image image) {
 
-        AddressValidator validator = new AddressValidator();
-
-        UrlValidator urlValidator = null;
         try {
-            urlValidator = validator.validate(new URL(image.getURL()));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        try {
-            write(urlValidator, image.getUser().getName());
+            write(image);
             this.imagesList.add(image);
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,33 +33,35 @@ public class AllImages implements ImageList {
         return imagesList.iterator();
     }
 
-    static String pathToSave = new Setup().getPATH();
 
-    public void write(UrlValidator urlValidator, String userName) throws IOException {
+    public void write(Image image) throws IOException {
         Logger log = Logger.getLogger(Logs.class.getName());
 
-        if (urlValidator.getUrl() != null) {
+        if (image.getURL() != null) {
 
-            log.info("Add new url in progress for save: " + urlValidator.getUrl());
+            log.info("Add new url in progress for save: " + image.getURL());
 
-            BufferedImage image = ImageIO.read(urlValidator.getUrl());
+            Extension extension = getExtention(image.getURL());
 
-            if (image != null) {
-               String newFileName = pathToSave + "\\" + userName + "\\image " + System.currentTimeMillis() + urlValidator.getExtension();
-                ImageIO.write(image, urlValidator.getFormatName(), new File(newFileName));
+            BufferedImage bufferedImage = ImageIO.read(new URL(image.getURL()));
+
+            if (bufferedImage != null) {
+                String newFileName = Extension.path() + "\\" + image.getUser().getName() + "\\image " + System.currentTimeMillis() + "." + extension;
+                ImageIO.write(bufferedImage,  extension.toString(), new File(newFileName));
 
                 FileChecker fileChecker = new FileChecker(newFileName);
 
-                log.info("User " + userName + " saved new picture with name: " + newFileName
+                log.info("User " + image.getUser().getName() + " saved new picture with name: " + newFileName
                         + " FileChecker " + fileChecker.checkForSave());
-                log.info(" test for file whole color model: " + fileChecker.checkForColorModel(image));
+                log.info(" test for file whole color model: " + fileChecker.checkForColorModel(bufferedImage));
             }
 
             else log.info("Can not read image");
         }
 
-        else  log.info(" url is not correct: " + urlValidator.getUrl());
+        else  log.info(" url is not correct: " + image.getURL());
     }
+
 
 
 }

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class UserImages implements ImageList {
+public class UserImages implements Images {
 
-    ImageList list;
+    Images list;
     User user;
 
-    public UserImages(ImageList list,  User user) {
+    public UserImages(Images list, User user) {
         this.list = list;
          this.user = user;
     }

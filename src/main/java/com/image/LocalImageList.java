@@ -3,7 +3,7 @@ package com.image;
 import java.util.Iterator;
 import java.util.List;
 
-public class LocalImageList implements ImageList {
+public class LocalImageList implements Images {
 
 
     private List<Image> imagesList;
