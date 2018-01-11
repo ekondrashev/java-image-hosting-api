@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 public class MyTest {
 
     @Test
-    public void test1() throws MalformedURLException {
+    public void testSaveImage() throws MalformedURLException {
 
         Images allImages = new ValidateImages(new AllImages());
 
