@@ -2,9 +2,9 @@ package com.image;
 
 public interface Image {
 
-    String getURL();
+    String URL();
 
-    User getUser();
+    User User();
 
 
 

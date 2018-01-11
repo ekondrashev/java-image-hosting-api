@@ -11,13 +11,13 @@ public class LocalImage implements Image {
     }
 
     @Override
-    public String getURL() {
+    public String URL() {
         return this.path;
     }
 
 
     @Override
-    public User getUser() {
+    public User User() {
         String[] parts = path.split(File.separator);
         return new User(parts[parts.length - 2], null);
     }

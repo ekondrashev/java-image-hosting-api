@@ -21,12 +21,12 @@ public class UrlImage implements Image{
     }
 
     @Override
-    public String getURL() {
+    public String URL() {
         return url.toString();
     }
 
     @Override
-    public User getUser() {
+    public User User() {
         return user;
     }
 }

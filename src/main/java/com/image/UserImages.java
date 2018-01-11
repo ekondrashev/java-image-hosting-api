@@ -15,8 +15,8 @@ public class UserImages implements Images {
     }
 
     @Override
-    public void addImage(Image image) {
-        list.addImage(image);
+    public void add(Image image) {
+        list.add(image);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class UserImages implements Images {
         List<Image> result = new ArrayList<>();
 
         for (Image image : list) {
-            if(image.getUser().equals(user))
+            if(image.User().equals(user))
             {
                 result.add(image);
             }

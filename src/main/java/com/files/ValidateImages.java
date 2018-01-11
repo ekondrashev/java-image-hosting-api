@@ -12,24 +12,22 @@ import java.util.logging.Logger;
 public class ValidateImages implements Images {
 
     Images images;
+    static final Logger LOG = Logger.getLogger(Logs.class.getName());;
 
     public ValidateImages(Images images) {
         this.images = images;
     }
 
     @Override
-    public void addImage(Image image) {
-        //  Setup setup = new Setup();
+    public void add(Image image) {
 
-        Logger log = Logger.getLogger(Logs.class.getName());
-        log.info("Add new url in progress for validation: " + image.getURL());
+        LOG.info("Add new url in progress for validation: " + image.URL());
 
-        //String extension = getExtention(image.getURL());
 
-        Extension extension = getExtention(image.getURL());
+        Extension extension = getExtention(image.URL());
 
         if (extension.isExtensionOK()) {
-            images.addImage(image);
+            images.add(image);
         } else {
             throw new ExtensionNotSupported();
         }

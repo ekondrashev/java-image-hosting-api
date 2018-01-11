@@ -1,6 +1,5 @@
 package com.image;
 
-import com.files.FileChecker;
 import com.log.Logs;
 
 import javax.imageio.ImageIO;
@@ -17,8 +16,10 @@ public class AllImages implements Images {
 
     private List<Image> imagesList = new ArrayList<>();
 
+    static final Logger LOG = Logger.getLogger(Logs.class.getName());
+
     @Override
-    public void addImage(Image image) {
+    public void add(Image image) {
 
         try {
             write(image);
@@ -35,33 +36,21 @@ public class AllImages implements Images {
 
 
     public void write(Image image) throws IOException {
-        Logger log = Logger.getLogger(Logs.class.getName());
 
-        if (image.getURL() != null) {
 
-            log.info("Add new url in progress for save: " + image.getURL());
+        LOG.info("Add new url in progress for save: " + image.URL());
 
-            Extension extension = getExtention(image.getURL());
+        Extension extension = getExtention(image.URL());
 
-            BufferedImage bufferedImage = ImageIO.read(new URL(image.getURL()));
+        BufferedImage bufferedImage = ImageIO.read(new URL(image.URL()));
 
-            if (bufferedImage != null) {
-                String newFileName = Extension.path() + "\\" + image.getUser().getName() + "\\image " + System.currentTimeMillis() + "." + extension;
-                ImageIO.write(bufferedImage,  extension.toString(), new File(newFileName));
+        String newFileName = Extension.path() + "\\" + image.User().getName() + "\\image " + System.currentTimeMillis() + "." + extension;
+        ImageIO.write(bufferedImage, extension.toString(), new File(newFileName));
 
-                FileChecker fileChecker = new FileChecker(newFileName);
+        LOG.info("User " + image.User().getName() + " saved new picture with name: " + newFileName);
 
-                log.info("User " + image.getUser().getName() + " saved new picture with name: " + newFileName
-                        + " FileChecker " + fileChecker.checkForSave());
-                log.info(" test for file whole color model: " + fileChecker.checkForColorModel(bufferedImage));
-            }
 
-            else log.info("Can not read image");
-        }
-
-        else  log.info(" url is not correct: " + image.getURL());
     }
-
 
 
 }
